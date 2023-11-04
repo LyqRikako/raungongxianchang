@@ -3,7 +3,7 @@ from flask import Flask, render_template, request, jsonify
 
 from importExcelAndGenarateMail import generate_emails_from_excel
 from send_email import send_email
-
+from individual import *
 app = Flask(__name__, static_url_path="", static_folder="templates")
 
 
@@ -20,19 +20,22 @@ def recv_xlsx():
     # 邮件发送者密码，不是QQ登录密码，是开启SMTP服务生成的授权码
     sender_password = 'rkcgtvcmehmfffgi'
     # 邮件接收者账号，可以是多个，用列表表示
-    receiver_emails = ['1297963210@qq.com']
+    receiver_emails = email_path
     # 邮件主题
     mail_subject = 'Python自动发送邮件测试'
-
+    file_path ='score.xlsx'
+    a = create_individual_grades(file_path)
+    flag = 0
     # 邮件附件路径
-    attachment_path = 'score.xlsx'
-
+    # attachment_path = 'score.xlsx'
     # TODO: xlsx 文件格式转换
-
-    for id, res in generate_emails_from_excel(attachment_path):
+    for id,res in generate_emails_from_excel(file_path):
+        attachment_path = a[flag]
+        flag += 1
+        print(attachment_path)
         # 发送邮件
-        send_email(email_path, sender_password, receiver_emails, mail_subject, res, attachment_path)
-
+        send_email(sender_email, sender_password, receiver_emails, mail_subject, res, attachment_path)
+    return ""
 
 if __name__ == "__main__":
     app.run(host="localhost", port=5555, debug=True, threaded=False)
