@@ -1,4 +1,13 @@
-function sendData() {
+function showScore() {
+    document.getElementById('score-box').classList.remove('hidden');
+}
+
+function hideScore() {
+    document.getElementById('score-box').classList.add('hidden');
+}
+
+
+function sendEmail() {
     var xhr = new XMLHttpRequest();
     xhr.open("POST", "/sendData");
     xhr.setRequestHeader("Content-Type", "application/json");
@@ -9,6 +18,12 @@ function sendData() {
         }
     };
 
-    var data = {}// 发送data
-    xhr.send(JSON.stringify(data));
+    var email = document.getElementById('email-input').value;
+    if (email) {
+        xhr.send(JSON.stringify(email));
+        alert('成绩单已发送至 ' + email);
+    } else {
+        alert('请输入邮箱');
+    }
 }
+
