@@ -7,21 +7,17 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div id="sidebar">
-      <button onclick="showScore()">导入成绩单</button>
-      <button onclick="showScore()">查看成绩单</button>
-    </div>
     <div id="content">
       <h1>欢迎来到成绩单页面</h1>
+      <p>在这里选择成绩单：</p>
+      <button onclick="FileUpload()">导入</button>
+      <input type="file" id="fileInput">
       <p>在这里输入要发送的邮箱：</p>
       <input type="text" id="email-input" placeholder="请输入邮箱" />
       <button onclick="sendEmail()">发送</button>
-      <div id="score-box" class="hidden">
-        <h2>成绩单</h2>
-        <p>这里是成绩单的内容。</p>
-        <button onclick="hideScore()">关闭</button>
       </div>
     </div>
     <script src="script.js"></script>
+    <script src="https://unpkg.com/xlsx/dist/xlsx.full.min.js"></script>
   </body>
 </html>

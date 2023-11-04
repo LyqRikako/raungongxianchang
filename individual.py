@@ -16,11 +16,3 @@ def create_individual_grades(file_path):
         #print(f'已创建学号为 {student_id} 的成绩单文件 {file_name}')
         attachment.append(file_name)
     return attachment
-def main():
-    # 总成绩单Excel文件路径
-    file_path = 'C:\\Users\\12979\\Desktop\\luogu_crawler\\score.xlsx'
-
-    # 按照学号新建对应的成绩单Excel文件
-    create_individual_grades(file_path)
-if __name__ == '__main__':
-    main()
